@@ -448,7 +448,10 @@
 
       if (grupo.recinto === "VENTAS") gruposVentas.push(grupo);
       else if (grupo.recinto === "ALUCHE") gruposAluche.push(grupo);
+      }
     }
+    gruposVentas.sort((a, b) => a.linea.localeCompare(b.linea));
+    gruposAluche.sort((a, b) => a.linea.localeCompare(b.linea));
 
     document.getElementById("turnoHeader").textContent = turno;
 
