@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grupos del Día - Metro de Madrid Señales</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #dce8f5;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #1a5fa8;
+      padding: 14px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 3px 10px rgba(0,0,0,.25);
+    }
+
+    .header-left { display: flex; align-items: center; gap: 16px; }
+
+    .header-text h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .header-text p {
+      font-size: 12px;
+      color: rgba(255,255,255,.8);
+      margin-top: 2px;
+    }
+
+    .badge {
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 8px;
+      padding: 8px 16px;
+      text-align: center;
+    }
+
+    .badge .turno {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 2px;
+    }
+
+    .badge .fecha {
+      font-size: 11px;
+      color: rgba(255,255,255,.75);
+      margin-top: 2px;
+    }
+
+    .toolbar {
+      background: #fff;
+      padding: 12px 30px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 2px solid #dce8f5;
+      flex-wrap: wrap;
+    }
+
+    .toolbar label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a5fa8;
+    }
+
+    .toolbar input[type="file"] {
+      font-size: 13px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+
+    .btn-cargar {
+      background: #1a5fa8;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-cargar:hover { background: #0d3d6e; }
+
+    .btn-imprimir {
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-left: auto;
+    }
+
+    .btn-imprimir:hover { background: #1e7e34; }
+
+    .instrucciones {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      border-radius: 8px;
+      padding: 12px 20px;
+      margin: 20px 30px;
+      font-size: 13px;
+      color: #856404;
+    }
+
+    .instrucciones strong { display: block; margin-bottom: 4px; }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 16px 40px;
+    }
+
+    .seccion-titulo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 28px 0 16px;
+    }
+
+    .seccion-titulo h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a5fa8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .seccion-linea {
+      flex: 1;
+      height: 2px;
+      background: #1a5fa8;
+      border-radius: 2px;
+    }
+
+    .seccion-badge {
+      background: #1a5fa8;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .grupos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 14px;
+    }
+
+    .grupo-card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,.09);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .grupo-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,.13);
+    }
+
+    .card-header {
+      background: #1a5fa8;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .card-header.aluche { background: #0d3d6e; }
+
+    .grupo-num {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .badges { display: flex; gap: 6px; align-items: center; }
+
+    .linea-badge {
+      background: rgba(255,255,255,.25);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    .trio-badge {
+      background: #ff8c00;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .persona {
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .persona:last-child { border-bottom: none; }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .av-aux { background: #1a5fa8; }
+    .av-ofi { background: #0d3d6e; }
+    .av-trio { background: #ff8c00; }
+
+    .pinfo .nombre {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .ptipo {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+      flex-shrink: 0;
+      text-transform: uppercase;
+    }
+
+    .tp-aux { background: #e8f0fb; color: #1a5fa8; }
+    .tp-ofi { background: #d0e0f5; color: #0d3d6e; }
+    .tp-trio { background: #fff4e0; color: #ff8c00; }
+
+    .info-box {
+      background: #f0f5fb;
+      border-top: 2px solid #cdd9ea;
+      padding: 10px 14px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 5px;
+      font-size: 11px;
+    }
+
+    .info-row:last-child { margin-bottom: 0; }
+
+    .ot-num {
+      background: #1a5fa8;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .info-label {
+      font-weight: 700;
+      color: #1a5fa8;
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+
+    .info-val { color: #333; line-height: 1.4; }
+
+    .sin-datos {
+      text-align: center;
+      padding: 60px 20px;
+      color: #888;
+      font-size: 15px;
+    }
+
+    .sin-datos .icono { font-size: 48px; margin-bottom: 12px; }
+
+    @media print {
+      body { background: white; }
+      .toolbar, .instrucciones { display: none; }
+      header, .card-header, .avatar, .ot-num,
+      .seccion-linea, .seccion-badge {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .grupo-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+        margin-bottom: 8px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header { flex-direction: column; gap: 10px; text-align: center; }
+      .toolbar { justify-content: center; }
+      .grupos-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="header-text">
+      <h1>&#128338; Grupos del Día</h1>
+      <p>Metro de Madrid &mdash; Señales</p>
+    </div>
+  </div>
+  <div class="badge">
+    <div class="turno" id="turnoHeader">---</div>
+    <div class="fecha" id="fechaHeader"></div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <label>📂 Cargar Excel (ASIGNACIONES):</label>
+  <input type="file" id="fileInput" accept=".xlsx,.xls,.csv">
+  <button class="btn-cargar" onclick="cargarArchivo()">Cargar grupos</button>
+  <button class="btn-imprimir" onclick="window.print()">🖨️ Imprimir</button>
+</div>
+
+<div class="instrucciones" id="instrucciones">
+  <strong>📋 Instrucciones:</strong>
+  1. Exporta la hoja <strong>ASIGNACIONES</strong> del Excel como CSV (Archivo → Guardar como → CSV).
+  &nbsp;&nbsp;2. Pulsa "Cargar grupos" y selecciona ese archivo CSV.
+  &nbsp;&nbsp;3. Los grupos aparecerán aquí automáticamente.
+</div>
+
+<div class="container" id="contenido">
+  <div class="sin-datos">
+    <div class="icono">📋</div>
+    <div>Carga el archivo CSV de ASIGNACIONES para ver los grupos</div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+  // Mostrar fecha de hoy
+  const hoy = new Date();
+  document.getElementById("fechaHeader").textContent =
+    hoy.toLocaleDateString("es-ES", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+
+  function cargarArchivo() {
+    const fileInput = document.getElementById("fileInput");
+    const file = fileInput.files[0];
+    if (!file) {
+      alert("Por favor selecciona un archivo primero.");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: "array" });
+
+        // Buscar hoja ASIGNACIONES o usar la primera
+        let sheetName = workbook.SheetNames.find(n =>
+          n.toUpperCase().includes("ASIGNACION")
+        ) || workbook.SheetNames[0];
+
+        const sheet = workbook.Sheets[sheetName];
+        const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: "" });
+
+        if (rows.length < 2) {
+          alert("El archivo no tiene datos.");
+          return;
+        }
+
+        renderGrupos(rows);
+        document.getElementById("instrucciones").style.display = "none";
+      } catch (err) {
+        alert("Error al leer el archivo: " + err.message);
+      }
+    };
+    reader.readAsArrayBuffer(file);
+  }
+
+  function renderGrupos(rows) {
+    // Cabecera en fila 0
+    // Columnas: 0=RECINTO, 1=GRUPO, 2=P1, 3=P2, 4=P3, 5=LINEA,
+    //           6=OT1, 7=DENOM1, 8=OT2, 9=DENOM2,
+    //           10=FURGONETA, 11=TELEFONO, 12=OBSERVACIONES
+
+    const gruposVentas = [];
+    const gruposAluche = [];
+
+    // Detectar turno desde los datos
+    let turno = "NOCHE";
+
+    for (let i = 1; i < rows.length; i++) {
+      const r = rows[i];
+      if (!r[0] || r[0].toString().startsWith("**")) continue;
+
+      const grupo = {
+        recinto:       r[0].toString().toUpperCase().trim(),
+        num:           r[1],
+        p1:            r[2].toString().trim(),
+        p2:            r[3].toString().trim(),
+        p3:            r[4].toString().trim(),
+        linea:         r[5].toString().trim(),
+        ot1:           r[6].toString().trim(),
+        denom1:        r[7].toString().trim(),
+        ot2:           r[8].toString().trim(),
+        denom2:        r[9].toString().trim(),
+        furgoneta:     r[10].toString().trim(),
+        telefono:      r[11].toString().trim(),
+        observaciones: r[12].toString().trim(),
+      };
+
+      if (grupo.recinto === "VENTAS") gruposVentas.push(grupo);
+      else if (grupo.recinto === "ALUCHE") gruposAluche.push(grupo);
+    }
+
+    document.getElementById("turnoHeader").textContent = turno;
+
+    const contenido = document.getElementById("contenido");
+    contenido.innerHTML = "";
+
+    // Sección VENTAS
+    contenido.innerHTML += seccionHTML("Ventas", gruposVentas, "ventas");
+    contenido.innerHTML += seccionHTML("Aluche", gruposAluche, "aluche");
+  }
+
+  function seccionHTML(nombre, grupos, clase) {
+    let html = `
+      <div class="seccion-titulo">
+        <h2>📍 ${nombre}</h2>
+        <div class="seccion-linea"></div>
+        <span class="seccion-badge">${grupos.length} grupos</span>
+      </div>
+      <div class="grupos-grid">
+    `;
+
+    if (grupos.length === 0) {
+      html += `<p style="color:#888;padding:20px;">No hay grupos para este recinto.</p>`;
+    } else {
+      for (const g of grupos) {
+        html += tarjetaHTML(g, clase);
+      }
+    }
+
+    html += `</div>`;
+    return html;
+  }
+
+  function tarjetaHTML(g, clase) {
+    const esTrio = g.p3 && g.p3.length > 0;
+
+    let html = `
+      <div class="grupo-card">
+        <div class="card-header ${clase}">
+          <span class="grupo-num">Grupo ${g.num}</span>
+          <div class="badges">
+            ${g.linea ? `<span class="linea-badge">${g.linea}</span>` : ""}
+            ${esTrio ? `<span class="trio-badge">Trío</span>` : ""}
+          </div>
+        </div>
+    `;
+
+    // Persona 1
+    if (g.p1) {
+      html += `
+        <div class="persona">
+          <div class="avatar av-aux">${g.p1.charAt(0)}</div>
+          <div class="pinfo"><div class="nombre">${g.p1}</div></div>
+          <span class="ptipo tp-aux">Auxiliar</span>
+        </div>
+      `;
+    }
+
+    // Persona 2
+    if (g.p2) {
+      html += `
+        <div class="persona">
+          <div class="avatar av-ofi">${g.p2.charAt(0)}</div>
+          <div class="pinfo"><div class="nombre">${g.p2}</div></div>
+          <span class="ptipo tp-ofi">Oficial</span>
+        </div>
+      `;
+    }
+
+    // Persona 3 (trío)
+    if (esTrio) {
+      html += `
+        <div class="persona">
+          <div class="avatar av-trio">${g.p3.charAt(0)}</div>
+          <div class="pinfo"><div class="nombre">${g.p3}</div></div>
+          <span class="ptipo tp-trio">Trío</span>
+        </div>
+      `;
+    }
+
+    // Caja de info
+    const tieneInfo = g.ot1 || g.ot2 || g.furgoneta || g.telefono || g.observaciones;
+    if (tieneInfo) {
+      html += `<div class="info-box">`;
+      if (g.ot1) html += `<div class="info-row"><span class="ot-num">${g.ot1}</span><span class="info-val">${g.denom1}</span></div>`;
+      if (g.ot2) html += `<div class="info-row"><span class="ot-num">${g.ot2}</span><span class="info-val">${g.denom2}</span></div>`;
+      if (g.furgoneta) html += `<div class="info-row"><span class="info-label">🚐 Furgoneta:</span><span class="info-val">${g.furgoneta}</span></div>`;
+      if (g.telefono) html += `<div class="info-row"><span class="info-label">📞 Teléfono:</span><span class="info-val">${g.telefono}</span></div>`;
+      if (g.observaciones) html += `<div class="info-row"><span class="info-label">📝 Obs.:</span><span class="info-val">${g.observaciones}</span></div>`;
+      html += `</div>`;
+    }
+
+    html += `</div>`;
+    return html;
+  }
+</script>
+</body>
+</html>
