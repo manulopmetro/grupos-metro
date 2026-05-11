@@ -7,6 +7,7 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: Arial, sans-serif; background: #dce8f5; min-height: 100vh; }
+
     header { background: #1a5fa8; padding: 14px 30px; display: flex; align-items: center; gap: 16px; box-shadow: 0 3px 10px rgba(0,0,0,.25); }
     .header-text { flex: 1; }
     .header-text h1 { font-size: 22px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
@@ -14,61 +15,138 @@
     .badge { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 8px; padding: 8px 16px; text-align: center; }
     .badge .turno { font-size: 16px; font-weight: 700; color: #fff; letter-spacing: 2px; }
     .badge .fecha { font-size: 11px; color: rgba(255,255,255,.75); margin-top: 2px; }
-    .container { max-width: 1200px; margin: 24px auto; padding: 0 16px 40px; }
-    .instrucciones { background: white; border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; border-left: 4px solid #1a5fa8; box-shadow: 0 2px 8px rgba(0,0,0,.07); }
-    .instrucciones h3 { color: #1a5fa8; font-size: 15px; margin-bottom: 10px; }
-    .instrucciones ol { margin-left: 20px; font-size: 13px; color: #444; line-height: 2; }
-    .instrucciones code { background: #f0f5fb; padding: 2px 6px; border-radius: 4px; font-size: 12px; color: #1a5fa8; }
-    .upload-area { background: white; border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,.07); display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-    .upload-area label { font-size: 14px; font-weight: 600; color: #333; }
-    .upload-area input[type="file"] { font-size: 13px; flex: 1; min-width: 200px; }
-    .fecha-selector { background: white; border-radius: 12px; padding: 16px 24px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,.07); display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
-    .fecha-selector label { font-size: 14px; font-weight: 600; color: #333; }
-    .fecha-selector input[type="date"] { font-size: 13px; padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px; }
-    .btn { border: none; border-radius: 8px; padding: 10px 24px; font-size: 14px; font-weight: 600; cursor: pointer; }
+
+    .container { max-width: 1400px; margin: 20px auto; padding: 0 16px 40px; }
+
+    .instrucciones { background: white; border-radius: 12px; padding: 16px 20px; margin-bottom: 16px; border-left: 4px solid #1a5fa8; box-shadow: 0 2px 8px rgba(0,0,0,.07); }
+    .instrucciones h3 { color: #1a5fa8; font-size: 14px; margin-bottom: 8px; }
+    .instrucciones ol { margin-left: 18px; font-size: 12px; color: #444; line-height: 1.9; }
+    .instrucciones code { background: #f0f5fb; padding: 2px 5px; border-radius: 4px; font-size: 11px; color: #1a5fa8; }
+
+    .controles { background: white; border-radius: 12px; padding: 14px 20px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,.07); display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .controles label { font-size: 13px; font-weight: 600; color: #333; }
+    .controles input[type="date"] { font-size: 13px; padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px; }
+    .controles input[type="file"] { font-size: 13px; flex: 1; min-width: 200px; }
+
+    .btn { border: none; border-radius: 8px; padding: 9px 20px; font-size: 13px; font-weight: 600; cursor: pointer; }
     .btn-cargar { background: #1a5fa8; color: white; }
     .btn-cargar:hover { background: #0d3d6e; }
     .btn-imprimir { background: #2ecc71; color: white; display: none; }
     .btn-imprimir:hover { background: #27ae60; }
-    .seccion-titulo { display: flex; align-items: center; gap: 12px; margin: 28px 0 16px; }
-    .seccion-titulo h2 { font-size: 18px; font-weight: 700; color: #1a5fa8; text-transform: uppercase; letter-spacing: 1px; }
+
+    .seccion-titulo { display: flex; align-items: center; gap: 12px; margin: 24px 0 12px; }
+    .seccion-titulo h2 { font-size: 16px; font-weight: 700; color: #1a5fa8; text-transform: uppercase; letter-spacing: 1px; }
     .seccion-linea { flex: 1; height: 2px; background: #1a5fa8; border-radius: 2px; }
-    .seccion-badge { background: #1a5fa8; color: #fff; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
-    .grupos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
-    .grupo-card { background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 3px 12px rgba(0,0,0,.09); }
-    .card-header { background: #1a5fa8; padding: 9px 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+    .seccion-badge { background: #1a5fa8; color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+
+    .galibo-titulo { font-size: 13px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0 8px; padding-left: 4px; border-left: 3px solid #1a5fa8; padding-left: 8px; }
+
+    /* GRUPOS EN FILAS para pantalla e impresion */
+    .grupos-grid { display: flex; flex-direction: column; gap: 8px; }
+
+    .grupo-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .card-header {
+      background: #1a5fa8;
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 90px;
+      gap: 4px;
+      flex-shrink: 0;
+    }
     .card-header.aluche { background: #0d3d6e; }
-    .grupo-num { font-size: 13px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
-    .linea-badge { background: rgba(255,255,255,.25); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
-    .trio-badge { background: #ff8c00; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 20px; text-transform: uppercase; }
-    .persona { padding: 10px 14px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f0f0f0; }
-    .persona:last-child { border-bottom: none; }
-    .avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: #fff; flex-shrink: 0; }
+    .grupo-num { font-size: 12px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; }
+    .linea-badge { background: rgba(255,255,255,.25); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 12px; }
+    .trio-badge { background: #ff8c00; color: #fff; font-size: 9px; font-weight: 700; padding: 2px 5px; border-radius: 10px; text-transform: uppercase; }
+
+    .card-personas {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      flex: 1;
+      border-right: 1px solid #eef2f8;
+    }
+
+    .persona {
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      border-right: 1px solid #f0f0f0;
+    }
+    .persona:last-child { border-right: none; }
+
+    .avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: #fff; flex-shrink: 0; }
     .av-aux { background: #1a5fa8; } .av-ofi { background: #0d3d6e; } .av-trio { background: #ff8c00; }
-    .pinfo { flex: 1; }
-    .pinfo .nombre { font-size: 13px; font-weight: 600; color: #1a1a1a; }
-    .pinfo .dne { font-size: 11px; color: #888; margin-top: 2px; }
-    .ptipo { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; flex-shrink: 0; text-transform: uppercase; }
+    .pinfo { flex: 1; min-width: 0; }
+    .pinfo .nombre { font-size: 12px; font-weight: 600; color: #1a1a1a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pinfo .dne { font-size: 10px; color: #888; margin-top: 1px; }
+    .ptipo { font-size: 9px; font-weight: 600; padding: 2px 6px; border-radius: 10px; flex-shrink: 0; text-transform: uppercase; white-space: nowrap; }
     .tp-aux { background: #e8f0fb; color: #1a5fa8; } .tp-ofi { background: #d0e0f5; color: #0d3d6e; } .tp-trio { background: #fff4e0; color: #ff8c00; }
-    .info-box { background: #f0f5fb; border-top: 2px solid #cdd9ea; padding: 10px 14px; }
-    .info-row { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 5px; font-size: 11px; }
-    .info-row:last-child { margin-bottom: 0; }
-    .info-label { font-weight: 700; color: #1a5fa8; min-width: 80px; flex-shrink: 0; }
-    .info-val { color: #333; line-height: 1.4; }
-    .ot-num { background: #1a5fa8; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+
+    .card-info {
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      min-width: 280px;
+      max-width: 380px;
+      background: #f8fafd;
+    }
+
+    .ot-row { display: flex; align-items: flex-start; gap: 6px; font-size: 11px; }
+    .ot-num { background: #1a5fa8; color: #fff; font-size: 9px; font-weight: 700; padding: 2px 5px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+    .ot-desc { color: #333; line-height: 1.3; }
+
+    .obs-row {
+      font-size: 11px;
+      font-weight: 700;
+      color: #cc0000;
+      background: #fff3f3;
+      border-left: 3px solid #cc0000;
+      padding: 3px 6px;
+      border-radius: 0 4px 4px 0;
+      margin-top: 2px;
+    }
+
+    .info-row-small { display: flex; align-items: center; gap: 6px; font-size: 10px; color: #555; }
+    .info-label-small { font-weight: 700; color: #1a5fa8; }
+
     .empty-state { text-align: center; padding: 60px 20px; color: #888; }
     .empty-state .icon { font-size: 48px; margin-bottom: 16px; }
-    .empty-state p { font-size: 15px; }
-    .no-grupos { color: #888; padding: 20px; font-size: 13px; }
+    .no-grupos { color: #888; padding: 16px; font-size: 13px; }
+
     @media print {
-      body { background: white; }
-      header, .card-header, .avatar, .ot-num, .seccion-linea, .seccion-badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .grupo-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; margin-bottom: 8px; }
-      .upload-area, .instrucciones, .btn-imprimir, .fecha-selector { display: none !important; }
+      @page { size: A4 landscape; margin: 10mm; }
+      body { background: white; font-size: 11px; }
+      header { box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 8px 16px; }
+      .header-text h1 { font-size: 16px; }
+      .container { margin: 4px auto; padding: 0; max-width: 100%; }
+      .instrucciones, .controles, .btn-imprimir { display: none !important; }
+      .seccion-titulo { margin: 8px 0 6px; }
+      .galibo-titulo { margin: 6px 0 4px; }
+      .grupo-card { box-shadow: none; border: 1px solid #ccc; margin-bottom: 4px; break-inside: avoid; }
+      .card-header, .avatar, .ot-num, .seccion-linea, .seccion-badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .card-info { min-width: 220px; max-width: 300px; }
+      .obs-row { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
   </style>
 </head>
 <body>
+
 <header>
   <div class="header-text">
     <h1>&#128338; Grupos del Día</h1>
@@ -79,27 +157,26 @@
     <div class="fecha" id="fecha-badge">-</div>
   </div>
 </header>
+
 <div class="container">
   <div class="instrucciones">
-    <h3>&#128196; Cómo cargar los grupos del día</h3>
+    <h3>&#128196; Cómo cargar los grupos</h3>
     <ol>
-      <li>Ejecuta el script <code>Generar Grupos</code> en el Excel de Teams</li>
+      <li>Ejecuta <code>Generar Grupos</code> en el Excel de Teams</li>
       <li>Descarga una copia del Excel (<strong>Archivo → Descargar una copia</strong>)</li>
-      <li>Selecciona la <strong>fecha</strong> que quieres ver y el <strong>archivo</strong> descargado</li>
-      <li>Pulsa <strong>Cargar grupos</strong></li>
+      <li>Selecciona la fecha y el archivo, luego pulsa <strong>Cargar grupos</strong></li>
     </ol>
   </div>
-  <div class="fecha-selector">
-    <label>&#128197; Fecha a mostrar:</label>
+
+  <div class="controles">
+    <label>&#128197; Fecha:</label>
     <input type="date" id="fechaInput" />
-    <span style="font-size:12px; color:#888;">(Deja vacío para ver todos los grupos)</span>
-  </div>
-  <div class="upload-area">
-    <label>&#128194; Archivo Excel:</label>
+    <label>&#128194; Excel:</label>
     <input type="file" id="fileInput" accept=".xlsx,.xls" />
     <button class="btn btn-cargar" onclick="cargarExcel()">Cargar grupos</button>
     <button class="btn btn-imprimir" id="btnImprimir" onclick="window.print()">&#128438; Imprimir</button>
   </div>
+
   <div id="contenido">
     <div class="empty-state">
       <div class="icon">&#128203;</div>
@@ -107,41 +184,51 @@
     </div>
   </div>
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
-// Columnas ASIGNACIONES v2:
-// 0=FECHA,1=RECINTO,2=GRUPO,3=P1,4=DNE1,5=CAT1,6=P2,7=DNE2,8=CAT2,
-// 9=P3,10=DNE3,11=CAT3,12=LINEA,13=OT1,14=DENOM1,15=OT2,16=DENOM2,
-// 17=FURGONETA,18=TELEFONO,19=OBSERVACIONES
+
+const GALIBO_ESTRECHO = ['L01','L1','L02','L2','L03','L3','L04','L4','L05','L5','LM1'];
+const GALIBO_ANCHO    = ['L06','L6','L07','L7','L08','L8','L09','L9','L10','L11','L12'];
+
+function esEstrecho(linea) {
+  const l = linea.toUpperCase().trim();
+  return GALIBO_ESTRECHO.some(g => l === g || l.startsWith(g + '-'));
+}
 
 function cargarExcel() {
   const fileInput = document.getElementById('fileInput');
   const file = fileInput.files[0];
   if (!file) { alert('Por favor selecciona un archivo Excel'); return; }
+
   const reader = new FileReader();
   reader.onload = function(e) {
     try {
       const data = new Uint8Array(e.target.result);
-      const workbook = XLSX.read(data, { type: 'array' });
-      const sheetName = workbook.SheetNames.find(n => n.toUpperCase() === 'ASIGNACIONES');
-      if (!sheetName) { alert('No se encuentra la hoja ASIGNACIONES.\nAsegurate de haber ejecutado el script primero.'); return; }
-      const sheet = workbook.Sheets[sheetName];
+      const wb = XLSX.read(data, { type: 'array' });
+      const sheetName = wb.SheetNames.find(n => n.toUpperCase() === 'ASIGNACIONES');
+      if (!sheetName) { alert('No se encuentra la hoja ASIGNACIONES.\nEjecuta el script primero.'); return; }
+
+      const sheet = wb.Sheets[sheetName];
       const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, raw: false });
-      if (rows.length < 2) { alert('La hoja ASIGNACIONES esta vacia.'); return; }
+      if (rows.length < 2) { alert('La hoja ASIGNACIONES está vacía.'); return; }
+
       const fechaInput = document.getElementById('fechaInput').value;
       let fechaFiltro = '';
       if (fechaInput) {
         const p = fechaInput.split('-');
         fechaFiltro = p[2] + '/' + p[1] + '/' + p[0];
       }
+
       const grupos = [];
       for (let i = 1; i < rows.length; i++) {
         const r = rows[i];
         if (!r[0] || r[0].toString().startsWith('**')) continue;
-        const fechaFila = r[0]?.toString().trim();
+        const fechaFila = (r[0]||'').toString().trim();
         if (fechaFiltro && fechaFila !== fechaFiltro) continue;
         grupos.push({
-          fecha: fechaFila||'', recinto: (r[1]||'').toString().toUpperCase().trim(),
+          fecha: fechaFila,
+          recinto: (r[1]||'').toString().toUpperCase().trim(),
           num: r[2]||'',
           p1: (r[3]||'').toString().trim(), dne1: (r[4]||'').toString().trim(), cat1: (r[5]||'').toString().trim(),
           p2: (r[6]||'').toString().trim(), dne2: (r[7]||'').toString().trim(), cat2: (r[8]||'').toString().trim(),
@@ -149,59 +236,122 @@ function cargarExcel() {
           linea: (r[12]||'').toString().trim(),
           ot1: (r[13]||'').toString().trim(), denom1: (r[14]||'').toString().trim(),
           ot2: (r[15]||'').toString().trim(), denom2: (r[16]||'').toString().trim(),
-          furgoneta: (r[17]||'').toString().trim(), telefono: (r[18]||'').toString().trim(),
+          furgoneta: (r[17]||'').toString().trim(),
+          telefono: (r[18]||'').toString().trim(),
           observaciones: (r[19]||'').toString().trim()
         });
       }
-      if (grupos.length === 0) { alert(fechaFiltro ? 'No hay grupos para la fecha ' + fechaFiltro : 'No se encontraron grupos.'); return; }
+
+      if (grupos.length === 0) {
+        alert(fechaFiltro ? 'No hay grupos para ' + fechaFiltro : 'No se encontraron grupos.');
+        return;
+      }
       mostrarGrupos(grupos, fechaFiltro);
-    } catch(err) { alert('Error al leer el archivo: ' + err.message); }
+    } catch(err) { alert('Error: ' + err.message); }
   };
   reader.readAsArrayBuffer(file);
 }
 
 function mostrarGrupos(grupos, fechaFiltro) {
+  document.getElementById('fecha-badge').textContent = fechaFiltro || 'Todos';
+
+  // Separar por recinto
   const ventas = grupos.filter(g => g.recinto === 'VENTAS');
   const aluche = grupos.filter(g => g.recinto === 'ALUCHE');
-  ventas.sort((a, b) => a.linea.localeCompare(b.linea));
-  aluche.sort((a, b) => a.linea.localeCompare(b.linea));
-  document.getElementById('fecha-badge').textContent = fechaFiltro || 'Todos los dias';
+
+  // Separar por galibo dentro de cada recinto
+  const vEstrecho = ventas.filter(g => esEstrecho(g.linea));
+  const vAncho    = ventas.filter(g => !esEstrecho(g.linea));
+  const aEstrecho = aluche.filter(g => esEstrecho(g.linea));
+  const aAncho    = aluche.filter(g => !esEstrecho(g.linea));
+
+  // Ordenar por linea
+  [vEstrecho, vAncho, aEstrecho, aAncho].forEach(arr =>
+    arr.sort((a, b) => a.linea.localeCompare(b.linea))
+  );
+
   let html = '';
-  html += '<div class="seccion-titulo"><h2>&#128198; Ventas</h2><div class="seccion-linea"></div><span class="seccion-badge">' + ventas.length + ' grupos</span></div>';
-  html += '<div class="grupos-grid">' + (ventas.length > 0 ? ventas.map(g => tarjetaHTML(g,'ventas')).join('') : '<p class="no-grupos">No hay grupos para Ventas.</p>') + '</div>';
-  html += '<div class="seccion-titulo"><h2>&#128198; Aluche</h2><div class="seccion-linea"></div><span class="seccion-badge">' + aluche.length + ' grupos</span></div>';
-  html += '<div class="grupos-grid">' + (aluche.length > 0 ? aluche.map(g => tarjetaHTML(g,'aluche')).join('') : '<p class="no-grupos">No hay grupos para Aluche.</p>') + '</div>';
+
+  // VENTAS
+  html += seccionHTML('Ventas', ventas.length, 'ventas', vEstrecho, vAncho);
+  // ALUCHE
+  html += seccionHTML('Aluche', aluche.length, 'aluche', aEstrecho, aAncho);
+
   document.getElementById('contenido').innerHTML = html;
   document.getElementById('btnImprimir').style.display = 'block';
 }
 
+function seccionHTML(nombre, total, cssClass, estrecho, ancho) {
+  let html = '<div class="seccion-titulo">';
+  html += '<h2>&#128198; ' + nombre + '</h2>';
+  html += '<div class="seccion-linea"></div>';
+  html += '<span class="seccion-badge">' + total + ' grupos</span>';
+  html += '</div>';
+
+  if (estrecho.length > 0) {
+    html += '<div class="galibo-titulo">&#9889; Gálibo estrecho (L1-L5, LM1)</div>';
+    html += '<div class="grupos-grid">' + estrecho.map(g => tarjetaHTML(g, cssClass)).join('') + '</div>';
+  }
+  if (ancho.length > 0) {
+    html += '<div class="galibo-titulo">&#9654; Gálibo ancho (L6-L12)</div>';
+    html += '<div class="grupos-grid">' + ancho.map(g => tarjetaHTML(g, cssClass)).join('') + '</div>';
+  }
+  if (estrecho.length === 0 && ancho.length === 0) {
+    html += '<p class="no-grupos">No hay grupos para ' + nombre + '.</p>';
+  }
+  return html;
+}
+
 function tarjetaHTML(g, cssClass) {
   const esTrio = g.p3 && g.p3.length > 0;
+
   const claseAv1 = g.cat1.toUpperCase().includes('AUXILIAR') ? 'av-aux' : 'av-ofi';
   const claseTp1 = g.cat1.toUpperCase().includes('AUXILIAR') ? 'tp-aux' : 'tp-ofi';
   const claseAv2 = g.cat2.toUpperCase().includes('AUXILIAR') ? 'av-aux' : 'av-ofi';
   const claseTp2 = g.cat2.toUpperCase().includes('AUXILIAR') ? 'tp-aux' : 'tp-ofi';
-  let infoBox = '';
-  if (g.ot1 || g.ot2 || g.furgoneta || g.telefono || g.observaciones) {
-    infoBox = '<div class="info-box">';
-    if (g.ot1) infoBox += '<div class="info-row"><span class="ot-num">' + g.ot1 + '</span><span class="info-val">' + g.denom1 + '</span></div>';
-    if (g.ot2) infoBox += '<div class="info-row"><span class="ot-num">' + g.ot2 + '</span><span class="info-val">' + g.denom2 + '</span></div>';
-    if (g.furgoneta) infoBox += '<div class="info-row"><span class="info-label">&#128663; Furgoneta:</span><span class="info-val">' + g.furgoneta + '</span></div>';
-    if (g.telefono) infoBox += '<div class="info-row"><span class="info-label">&#128222; Telefono:</span><span class="info-val">' + g.telefono + '</span></div>';
-    if (g.observaciones) infoBox += '<div class="info-row"><span class="info-label">&#128221; Obs.:</span><span class="info-val">' + g.observaciones + '</span></div>';
-    infoBox += '</div>';
+
+  // Personas
+  let personas = '';
+  if (g.p1) personas += personaHTML(g.p1, g.dne1, g.cat1, claseAv1, claseTp1);
+  if (g.p2) personas += personaHTML(g.p2, g.dne2, g.cat2, claseAv2, claseTp2);
+  if (esTrio) personas += personaHTML(g.p3, g.dne3, g.cat3, 'av-trio', 'tp-trio');
+
+  // Info OTs + observaciones
+  let info = '';
+  if (g.ot1) info += '<div class="ot-row"><span class="ot-num">' + g.ot1 + '</span><span class="ot-desc">' + g.denom1 + '</span></div>';
+  if (g.ot2) info += '<div class="ot-row"><span class="ot-num">' + g.ot2 + '</span><span class="ot-desc">' + g.denom2 + '</span></div>';
+  if (g.furgoneta || g.telefono) {
+    info += '<div class="info-row-small">';
+    if (g.furgoneta) info += '<span class="info-label-small">&#128663;</span><span>' + g.furgoneta + '</span>';
+    if (g.telefono) info += '<span class="info-label-small" style="margin-left:8px">&#128222;</span><span>' + g.telefono + '</span>';
+    info += '</div>';
   }
+  if (g.observaciones) {
+    info += '<div class="obs-row">&#9888; ' + g.observaciones + '</div>';
+  }
+
   return '<div class="grupo-card">' +
     '<div class="card-header ' + cssClass + '">' +
-    '<span class="grupo-num">Grupo ' + g.num + '</span>' +
-    (g.linea ? '<span class="linea-badge">' + g.linea + '</span>' : '') +
-    (esTrio ? '<span class="trio-badge">Trio</span>' : '') +
+      '<span class="grupo-num">Grupo ' + g.num + '</span>' +
+      (g.linea ? '<span class="linea-badge">' + g.linea + '</span>' : '') +
+      (esTrio ? '<span class="trio-badge">Trío</span>' : '') +
     '</div>' +
-    (g.p1 ? '<div class="persona"><div class="avatar ' + claseAv1 + '">' + g.p1.charAt(0) + '</div><div class="pinfo"><div class="nombre">' + g.p1 + '</div>' + (g.dne1 ? '<div class="dne">DNE: ' + g.dne1 + '</div>' : '') + '</div><span class="ptipo ' + claseTp1 + '">' + (g.cat1||'Auxiliar') + '</span></div>' : '') +
-    (g.p2 ? '<div class="persona"><div class="avatar ' + claseAv2 + '">' + g.p2.charAt(0) + '</div><div class="pinfo"><div class="nombre">' + g.p2 + '</div>' + (g.dne2 ? '<div class="dne">DNE: ' + g.dne2 + '</div>' : '') + '</div><span class="ptipo ' + claseTp2 + '">' + (g.cat2||'Oficial') + '</span></div>' : '') +
-    (esTrio ? '<div class="persona"><div class="avatar av-trio">' + g.p3.charAt(0) + '</div><div class="pinfo"><div class="nombre">' + g.p3 + '</div>' + (g.dne3 ? '<div class="dne">DNE: ' + g.dne3 + '</div>' : '') + '</div><span class="ptipo tp-trio">' + (g.cat3||'Trio') + '</span></div>' : '') +
-    infoBox + '</div>';
+    '<div class="card-personas">' + personas + '</div>' +
+    '<div class="card-info">' + info + '</div>' +
+    '</div>';
 }
+
+function personaHTML(nombre, dne, cat, claseAv, claseTp) {
+  return '<div class="persona">' +
+    '<div class="avatar ' + claseAv + '">' + nombre.charAt(0) + '</div>' +
+    '<div class="pinfo">' +
+      '<div class="nombre">' + nombre + '</div>' +
+      (dne ? '<div class="dne">DNE: ' + dne + '</div>' : '') +
+    '</div>' +
+    '<span class="ptipo ' + claseTp + '">' + (cat||'') + '</span>' +
+    '</div>';
+}
+
 </script>
 </body>
 </html>
