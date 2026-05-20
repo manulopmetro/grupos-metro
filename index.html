@@ -156,7 +156,14 @@
     .anotaciones-titulo { font-size: 11px; font-weight: 700; color: #666; text-transform: uppercase; margin-bottom: 8px; }
 
     @media print {
-      @page { size: A4 landscape; margin: 10mm; }
+      @page { 
+        size: A4 landscape; 
+        margin: 10mm;
+      }
+      html, body {
+        width: 297mm;
+        height: 210mm;
+      }
       body { background: white; font-size: 10px; }
       header { box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 6px 12px; }
       .header-text h1 { font-size: 14px; }
@@ -184,10 +191,10 @@
       .obs-destacada { margin-top: 4px; padding: 5px 8px; font-size: 11px; }
       .card-personas { min-width: 200px; max-width: 240px; padding: 6px 8px; gap: 4px; }
       .persona-mini { gap: 5px; }
-      .avatar-mini { width: 22px; height: 22px; font-size: 10px; }
-      .pinfo-mini .nombre { font-size: 10px; line-height: 1.2; }
-      .pinfo-mini .dne { font-size: 9px; }
-      .pinfo-mini .cargo { font-size: 8px; }
+      .avatar-mini { width: 24px; height: 24px; font-size: 11px; }
+      .pinfo-mini .nombre { font-size: 12px; line-height: 1.2; font-weight: 700; }
+      .pinfo-mini .dne { font-size: 10px; }
+      .pinfo-mini .cargo { font-size: 9px; }
       .anotaciones-espacio { margin-top: 12px; padding: 10px; min-height: 60px; }
       .anotaciones-titulo { font-size: 10px; }
       .grupo-num-badge, .linea-badge-big, .ot-num-big, .avatar-mini, .seccion-linea, .seccion-badge, .info-destacada, .obs-destacada { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
