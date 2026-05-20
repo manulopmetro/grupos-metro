@@ -156,18 +156,41 @@
     .anotaciones-titulo { font-size: 11px; font-weight: 700; color: #666; text-transform: uppercase; margin-bottom: 8px; }
 
     @media print {
-      @page { size: A4 portrait; margin: 8mm; }
+      @page { size: A4 landscape; margin: 10mm; }
       body { background: white; font-size: 10px; }
       header { box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 6px 12px; }
       .header-text h1 { font-size: 14px; }
-      .container { margin: 2px auto; padding: 0; max-width: 100%; }
+      .header-text p { font-size: 10px; }
+      .badge { padding: 4px 10px; }
+      .badge .turno { font-size: 12px; }
+      .badge .fecha { font-size: 9px; }
+      .container { margin: 4px auto; padding: 0; max-width: 100%; }
       .instrucciones, .controles, .btn-imprimir { display: none !important; }
-      .seccion-titulo { margin: 6px 0 4px; }
-      .galibo-titulo { margin: 4px 0 3px; font-size: 10px; }
-      .grupo-card { box-shadow: none; border: 1px solid #ccc; margin-bottom: 3px; }
+      .seccion-titulo { margin: 8px 0 6px; }
+      .seccion-titulo h2 { font-size: 13px; }
+      .seccion-badge { font-size: 10px; padding: 3px 8px; }
+      .galibo-titulo { margin: 6px 0 4px; font-size: 11px; }
+      .grupos-grid { gap: 4px; }
+      .grupo-card { box-shadow: none; border: 1px solid #ccc; margin-bottom: 4px; }
+      .card-main { padding: 6px 10px; gap: 4px; }
+      .grupo-num-badge { font-size: 14px; padding: 5px 10px; }
+      .linea-badge-big { font-size: 12px; padding: 3px 8px; }
+      .trio-badge { font-size: 9px; padding: 2px 5px; }
+      .ot-num-big { font-size: 10px; padding: 3px 6px; min-width: 60px; }
+      .ot-desc-big { font-size: 11px; line-height: 1.2; }
+      .ots-block { gap: 3px; margin-top: 3px; }
+      .info-destacada { margin-top: 4px; padding: 5px 8px; }
+      .info-destacada-row { font-size: 10px; }
+      .obs-destacada { margin-top: 4px; padding: 5px 8px; font-size: 11px; }
+      .card-personas { min-width: 200px; max-width: 240px; padding: 6px 8px; gap: 4px; }
+      .persona-mini { gap: 5px; }
+      .avatar-mini { width: 22px; height: 22px; font-size: 10px; }
+      .pinfo-mini .nombre { font-size: 10px; line-height: 1.2; }
+      .pinfo-mini .dne { font-size: 9px; }
+      .pinfo-mini .cargo { font-size: 8px; }
+      .anotaciones-espacio { margin-top: 12px; padding: 10px; min-height: 60px; }
+      .anotaciones-titulo { font-size: 10px; }
       .grupo-num-badge, .linea-badge-big, .ot-num-big, .avatar-mini, .seccion-linea, .seccion-badge, .info-destacada, .obs-destacada { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .card-personas { min-width: 200px; max-width: 240px; }
-      .anotaciones-espacio { min-height: 60px; }
     }
   </style>
 </head>
