@@ -296,32 +296,29 @@ function mostrarGrupos(grupos, fechaFiltro) {
   document.getElementById('fecha-badge').textContent = fechaFiltro || 'Todos';
 
   // Separar por gálibo (mezclando Aluche y Ventas)
-  const ancho = grupos.filter(g => !esEstrecho(g.linea));
   const estrecho = grupos.filter(g => esEstrecho(g.linea));
+  const ancho = grupos.filter(g => !esEstrecho(g.linea));
 
   // Ordenar por línea
-  ancho.sort((a, b) => a.linea.localeCompare(b.linea));
   estrecho.sort((a, b) => a.linea.localeCompare(b.linea));
+  ancho.sort((a, b) => a.linea.localeCompare(b.linea));
 
   let html = '';
   
-  // Sección Gálibo Ancho (hoja 1)
-  if (ancho.length > 0) {
-    html += '<div class="seccion-titulo">';
-    html += '<h2>&#9654; GÁLIBO ANCHO (L6-L12)</h2><div class="seccion-linea"></div>';
-    html += '<span class="seccion-badge">' + ancho.length + ' grupos</span></div>';
-    html += '<div class="grupos-grid">' + ancho.map(g => tarjetaHTML(g, g.recinto === 'VENTAS' ? 'ventas' : 'aluche')).join('') + '</div>';
-  }
-  
-  // Salto de página
-  html += '<div style="page-break-after: always;"></div>';
-  
-  // Sección Gálibo Estrecho (hoja 2)
+  // Sección Gálibo Estrecho (primero)
   if (estrecho.length > 0) {
     html += '<div class="seccion-titulo">';
     html += '<h2>&#9889; GÁLIBO ESTRECHO (L1-L5, LM1)</h2><div class="seccion-linea"></div>';
     html += '<span class="seccion-badge">' + estrecho.length + ' grupos</span></div>';
     html += '<div class="grupos-grid">' + estrecho.map(g => tarjetaHTML(g, g.recinto === 'VENTAS' ? 'ventas' : 'aluche')).join('') + '</div>';
+  }
+  
+  // Sección Gálibo Ancho (después)
+  if (ancho.length > 0) {
+    html += '<div class="seccion-titulo" style="margin-top: 24px;">';
+    html += '<h2>&#9654; GÁLIBO ANCHO (L6-L12)</h2><div class="seccion-linea"></div>';
+    html += '<span class="seccion-badge">' + ancho.length + ' grupos</span></div>';
+    html += '<div class="grupos-grid">' + ancho.map(g => tarjetaHTML(g, g.recinto === 'VENTAS' ? 'ventas' : 'aluche')).join('') + '</div>';
   }
 
   html += '<div class="anotaciones-espacio"><div class="anotaciones-titulo">&#9998; Anotaciones del turno:</div></div>';
