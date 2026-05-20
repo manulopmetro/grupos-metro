@@ -8,104 +8,96 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: Arial, sans-serif; background: #dce8f5; min-height: 100vh; }
 
-    header { background: #1a5fa8; padding: 12px 24px; display: flex; align-items: center; gap: 14px; box-shadow: 0 3px 10px rgba(0,0,0,.25); }
+    header { background: #1a5fa8; padding: 10px 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
     .header-text { flex: 1; }
-    .header-text h1 { font-size: 20px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
-    .header-text p { font-size: 11px; color: rgba(255,255,255,.8); margin-top: 2px; }
-    .badge { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 8px; padding: 6px 14px; text-align: center; }
-    .badge .turno { font-size: 14px; font-weight: 700; color: #fff; letter-spacing: 2px; }
-    .badge .fecha { font-size: 10px; color: rgba(255,255,255,.75); margin-top: 2px; }
+    .header-text h1 { font-size: 18px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.8px; }
+    .header-text p { font-size: 10px; color: rgba(255,255,255,.8); margin-top: 2px; }
+    .badge { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 6px; padding: 5px 12px; text-align: center; }
+    .badge .turno { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 1.5px; }
+    .badge .fecha { font-size: 9px; color: rgba(255,255,255,.75); margin-top: 2px; }
 
-    .container { max-width: 1000px; margin: 16px auto; padding: 0 12px 30px; }
+    .container { max-width: 1200px; margin: 14px auto; padding: 0 12px 24px; }
 
-    .instrucciones { background: white; border-radius: 10px; padding: 14px 18px; margin-bottom: 12px; border-left: 4px solid #1a5fa8; box-shadow: 0 2px 6px rgba(0,0,0,.06); }
-    .instrucciones h3 { color: #1a5fa8; font-size: 13px; margin-bottom: 6px; }
-    .instrucciones ol { margin-left: 16px; font-size: 11px; color: #444; line-height: 1.8; }
-    .instrucciones code { background: #f0f5fb; padding: 1px 4px; border-radius: 3px; font-size: 10px; color: #1a5fa8; }
+    .instrucciones { background: white; border-radius: 8px; padding: 12px 16px; margin-bottom: 10px; border-left: 3px solid #1a5fa8; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+    .instrucciones h3 { color: #1a5fa8; font-size: 12px; margin-bottom: 5px; }
+    .instrucciones ol { margin-left: 14px; font-size: 10px; color: #444; line-height: 1.7; }
+    .instrucciones code { background: #f0f5fb; padding: 1px 4px; border-radius: 3px; font-size: 9px; color: #1a5fa8; }
 
-    .controles { background: white; border-radius: 10px; padding: 12px 18px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(0,0,0,.06); display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-    .controles label { font-size: 12px; font-weight: 600; color: #333; }
-    .controles input[type="date"] { font-size: 12px; padding: 5px 8px; border: 1px solid #ccc; border-radius: 5px; }
-    .controles input[type="file"] { font-size: 12px; flex: 1; min-width: 180px; }
+    .controles { background: white; border-radius: 8px; padding: 10px 16px; margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.05); display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .controles label { font-size: 11px; font-weight: 600; color: #333; }
+    .controles input[type="date"] { font-size: 11px; padding: 4px 7px; border: 1px solid #ccc; border-radius: 4px; }
+    .controles input[type="file"] { font-size: 11px; flex: 1; min-width: 160px; }
 
-    .btn { border: none; border-radius: 7px; padding: 8px 18px; font-size: 12px; font-weight: 600; cursor: pointer; }
+    .btn { border: none; border-radius: 6px; padding: 7px 16px; font-size: 11px; font-weight: 600; cursor: pointer; }
     .btn-cargar { background: #1a5fa8; color: white; }
     .btn-cargar:hover { background: #0d3d6e; }
     .btn-imprimir { background: #2ecc71; color: white; display: none; }
     .btn-imprimir:hover { background: #27ae60; }
 
-    .seccion-titulo { display: flex; align-items: center; gap: 10px; margin: 20px 0 10px; }
-    .seccion-titulo h2 { font-size: 15px; font-weight: 700; color: #1a5fa8; text-transform: uppercase; letter-spacing: 0.8px; }
-    .seccion-linea { flex: 1; height: 2px; background: #1a5fa8; border-radius: 2px; }
-    .seccion-badge { background: #1a5fa8; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 16px; }
+    .seccion-titulo { display: flex; align-items: center; gap: 8px; margin: 16px 0 8px; }
+    .seccion-titulo h2 { font-size: 14px; font-weight: 700; color: #1a5fa8; text-transform: uppercase; letter-spacing: 0.6px; }
+    .seccion-linea { flex: 1; height: 2px; background: linear-gradient(to right, #1a5fa8, transparent); }
+    .seccion-badge { background: #1a5fa8; color: #fff; font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 12px; }
 
-    .galibo-titulo { font-size: 12px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.8px; margin: 10px 0 6px; padding-left: 6px; border-left: 3px solid #1a5fa8; }
+    .galibo-titulo { font-size: 11px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.6px; margin: 8px 0 5px; padding-left: 5px; border-left: 3px solid #1a5fa8; }
 
-    .grupos-grid { display: flex; flex-direction: column; gap: 4px; }
+    .grupos-grid { display: flex; flex-direction: column; gap: 5px; }
 
     .grupo-card {
       background: #fff;
-      border-radius: 8px;
+      border-radius: 6px;
       overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,.07);
-      display: flex;
-      flex-direction: row;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
       align-items: stretch;
       page-break-inside: avoid;
     }
 
-    .card-main {
-      flex: 1;
+    .card-header {
+      background: #1a5fa8;
       padding: 8px 12px;
       display: flex;
       flex-direction: column;
-      gap: 4px;
-    }
-
-    .grupo-header {
-      display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 4px;
+      justify-content: center;
+      gap: 3px;
+      min-width: 80px;
     }
-
-    .grupo-num-badge {
-      background: #1a5fa8;
-      color: white;
-      font-size: 16px;
-      font-weight: 700;
-      padding: 6px 12px;
-      border-radius: 6px;
-      letter-spacing: 0.5px;
-    }
-    .grupo-num-badge.aluche { background: #0d3d6e; }
-
-    .linea-badge-big { background: #1a5fa8; color: #fff; font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 6px; }
-    .linea-badge-big.aluche { background: #0d3d6e; }
+    .card-header.aluche { background: #0d3d6e; }
     
-    .trio-badge { background: #ff8c00; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 7px; border-radius: 12px; text-transform: uppercase; }
+    .grupo-num { font-size: 16px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+    .linea-badge { background: rgba(255,255,255,.3); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 10px; }
+    .trio-badge { background: #ff8c00; color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 8px; text-transform: uppercase; margin-top: 2px; }
 
-    .ots-block { display: flex; flex-direction: column; gap: 3px; margin-top: 3px; }
-    .ot-item { display: flex; align-items: flex-start; gap: 6px; }
-    .ot-num-big { background: #1a5fa8; color: white; font-size: 10px; font-weight: 700; padding: 3px 6px; border-radius: 4px; min-width: 60px; text-align: center; flex-shrink: 0; }
-    .ot-desc-big { font-size: 12px; font-weight: 600; color: #222; line-height: 1.2; flex: 1; }
+    .card-main {
+      padding: 8px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .ots-section { display: flex; flex-direction: column; gap: 3px; }
+    .ot-row { display: flex; align-items: center; gap: 8px; }
+    .ot-num { background: #1a5fa8; color: white; font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 4px; min-width: 70px; text-align: center; flex-shrink: 0; }
+    .ot-desc { font-size: 13px; font-weight: 600; color: #222; line-height: 1.3; flex: 1; }
 
     .info-destacada {
-      margin-top: 6px;
-      padding: 6px 10px;
+      margin-top: 3px;
+      padding: 5px 10px;
       background: #fff9e6;
       border-left: 3px solid #ffa500;
       border-radius: 0 4px 4px 0;
       display: flex;
-      flex-direction: column;
-      gap: 3px;
+      gap: 12px;
+      flex-wrap: wrap;
     }
-    .info-destacada-row { font-size: 11px; display: flex; align-items: center; gap: 6px; }
-    .info-destacada-label { font-weight: 700; color: #ff8c00; min-width: 70px; }
-    .info-destacada-val { color: #333; font-weight: 600; }
+    .info-item { font-size: 11px; display: flex; align-items: center; gap: 4px; }
+    .info-label { font-weight: 700; color: #ff8c00; }
+    .info-val { color: #333; font-weight: 600; }
 
     .obs-destacada {
-      margin-top: 4px;
+      margin-top: 3px;
       padding: 6px 10px;
       background: #ffe6e6;
       border-left: 4px solid #cc0000;
@@ -113,91 +105,88 @@
       font-size: 12px;
       font-weight: 700;
       color: #cc0000;
-      line-height: 1.4;
+      line-height: 1.3;
     }
 
     .card-personas {
-      min-width: 240px;
-      max-width: 280px;
-      padding: 8px 10px;
+      padding: 8px 12px;
       background: #f8fafd;
       border-left: 2px solid #e0e6f0;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 5px;
+      gap: 6px;
+      min-width: 280px;
     }
 
-    .persona-mini {
+    .persona-row {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
-    .avatar-mini { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 10px; color: #fff; flex-shrink: 0; }
+    .avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; color: #fff; flex-shrink: 0; }
     .av-aux { background: #1a5fa8; } .av-ofi { background: #0d3d6e; } .av-trio { background: #ff8c00; }
     
-    .pinfo-mini { flex: 1; min-width: 0; }
-    .pinfo-mini .nombre { font-size: 10px; font-weight: 600; color: #333; line-height: 1.1; word-wrap: break-word; }
-    .pinfo-mini .dne { font-size: 9px; color: #888; }
-    .pinfo-mini .cargo { font-size: 9px; color: #1a5fa8; font-weight: 600; text-transform: uppercase; margin-top: 1px; }
+    .pinfo { flex: 1; min-width: 0; }
+    .pinfo .nombre { font-size: 12px; font-weight: 700; color: #1a1a1a; line-height: 1.2; }
+    .pinfo .detalles { font-size: 10px; color: #666; margin-top: 1px; }
+    .pinfo .detalles .dne { color: #888; }
+    .pinfo .detalles .sep { color: #ccc; margin: 0 4px; }
+    .pinfo .detalles .cargo { color: #1a5fa8; font-weight: 600; }
 
-    .empty-state { text-align: center; padding: 50px 20px; color: #888; }
-    .empty-state .icon { font-size: 42px; margin-bottom: 12px; }
-    .no-grupos { color: #888; padding: 14px; font-size: 12px; }
+    .empty-state { text-align: center; padding: 40px 20px; color: #888; }
+    .empty-state .icon { font-size: 38px; margin-bottom: 10px; }
+    .no-grupos { color: #888; padding: 12px; font-size: 11px; }
 
     .anotaciones-espacio {
-      margin-top: 20px;
-      padding: 16px;
+      margin-top: 16px;
+      padding: 12px;
       background: white;
-      border-radius: 8px;
+      border-radius: 6px;
       border: 2px dashed #ccc;
-      min-height: 100px;
+      min-height: 80px;
     }
-    .anotaciones-titulo { font-size: 11px; font-weight: 700; color: #666; text-transform: uppercase; margin-bottom: 8px; }
+    .anotaciones-titulo { font-size: 10px; font-weight: 700; color: #666; text-transform: uppercase; margin-bottom: 6px; }
 
     @media print {
       @page { 
         size: A4 landscape; 
-        margin: 10mm;
+        margin: 8mm;
       }
-      html, body {
-        width: 297mm;
-        height: 210mm;
-      }
-      body { background: white; font-size: 10px; }
-      header { box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 6px 12px; }
-      .header-text h1 { font-size: 14px; }
-      .header-text p { font-size: 10px; }
-      .badge { padding: 4px 10px; }
-      .badge .turno { font-size: 12px; }
-      .badge .fecha { font-size: 9px; }
-      .container { margin: 4px auto; padding: 0; max-width: 100%; }
+      body { background: white; }
+      header { -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 5px 12px; box-shadow: none; }
+      .header-text h1 { font-size: 13px; }
+      .header-text p { font-size: 8px; }
+      .badge { padding: 3px 8px; }
+      .badge .turno { font-size: 10px; }
+      .badge .fecha { font-size: 7px; }
+      .container { margin: 0; padding: 0; max-width: 100%; }
       .instrucciones, .controles, .btn-imprimir { display: none !important; }
-      .seccion-titulo { margin: 8px 0 6px; }
-      .seccion-titulo h2 { font-size: 13px; }
-      .seccion-badge { font-size: 10px; padding: 3px 8px; }
-      .galibo-titulo { margin: 6px 0 4px; font-size: 11px; }
-      .grupos-grid { gap: 4px; }
-      .grupo-card { box-shadow: none; border: 1px solid #ccc; margin-bottom: 4px; }
+      .seccion-titulo { margin: 6px 0 4px; }
+      .seccion-titulo h2 { font-size: 11px; }
+      .seccion-badge { font-size: 8px; }
+      .galibo-titulo { margin: 5px 0 3px; font-size: 9px; }
+      .grupos-grid { gap: 3px; }
+      .grupo-card { box-shadow: none; border: 1px solid #ddd; }
+      .card-header { padding: 6px 10px; min-width: 70px; }
+      .grupo-num { font-size: 14px; }
+      .linea-badge { font-size: 10px; padding: 2px 6px; }
+      .trio-badge { font-size: 8px; }
       .card-main { padding: 6px 10px; gap: 4px; }
-      .grupo-num-badge { font-size: 14px; padding: 5px 10px; }
-      .linea-badge-big { font-size: 12px; padding: 3px 8px; }
-      .trio-badge { font-size: 9px; padding: 2px 5px; }
-      .ot-num-big { font-size: 10px; padding: 3px 6px; min-width: 60px; }
-      .ot-desc-big { font-size: 11px; line-height: 1.2; }
-      .ots-block { gap: 3px; margin-top: 3px; }
-      .info-destacada { margin-top: 4px; padding: 5px 8px; }
-      .info-destacada-row { font-size: 10px; }
-      .obs-destacada { margin-top: 4px; padding: 5px 8px; font-size: 11px; }
-      .card-personas { min-width: 200px; max-width: 240px; padding: 6px 8px; gap: 4px; }
-      .persona-mini { gap: 5px; }
-      .avatar-mini { width: 24px; height: 24px; font-size: 11px; }
-      .pinfo-mini .nombre { font-size: 12px; line-height: 1.2; font-weight: 700; }
-      .pinfo-mini .dne { font-size: 10px; }
-      .pinfo-mini .cargo { font-size: 9px; }
-      .anotaciones-espacio { margin-top: 12px; padding: 10px; min-height: 60px; }
-      .anotaciones-titulo { font-size: 10px; }
-      .grupo-num-badge, .linea-badge-big, .ot-num-big, .avatar-mini, .seccion-linea, .seccion-badge, .info-destacada, .obs-destacada { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .ot-num { font-size: 10px; padding: 3px 6px; min-width: 60px; }
+      .ot-desc { font-size: 11px; }
+      .ots-section { gap: 2px; }
+      .info-destacada { margin-top: 2px; padding: 4px 8px; gap: 10px; }
+      .info-item { font-size: 9px; }
+      .obs-destacada { margin-top: 2px; padding: 4px 8px; font-size: 10px; }
+      .card-personas { padding: 6px 10px; gap: 4px; min-width: 240px; }
+      .persona-row { gap: 6px; }
+      .avatar { width: 24px; height: 24px; font-size: 11px; }
+      .pinfo .nombre { font-size: 11px; }
+      .pinfo .detalles { font-size: 9px; }
+      .anotaciones-espacio { margin-top: 10px; padding: 8px; min-height: 50px; }
+      .anotaciones-titulo { font-size: 9px; }
+      .card-header, .avatar, .ot-num, .seccion-linea, .seccion-badge, .info-destacada, .obs-destacada { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
   </style>
 </head>
@@ -345,25 +334,25 @@ function seccionHTML(nombre, total, cssClass, estrecho, ancho) {
 function tarjetaHTML(g, cssClass) {
   const esTrio = g.p3 && g.p3.length > 0;
 
-  let header = '<div class="grupo-header">';
-  header += '<div class="grupo-num-badge ' + cssClass + '">Grupo ' + g.num + '</div>';
-  if (g.linea) header += '<div class="linea-badge-big ' + cssClass + '">' + g.linea + '</div>';
-  if (esTrio) header += '<span class="trio-badge">Trío</span>';
+  let header = '<div class="card-header ' + cssClass + '">';
+  header += '<div class="grupo-num">G' + g.num + '</div>';
+  if (g.linea) header += '<div class="linea-badge">' + g.linea + '</div>';
+  if (esTrio) header += '<div class="trio-badge">Trío</div>';
   header += '</div>';
 
   let ots = '';
   if (g.ot1 || g.ot2) {
-    ots = '<div class="ots-block">';
-    if (g.ot1) ots += '<div class="ot-item"><div class="ot-num-big">' + g.ot1 + '</div><div class="ot-desc-big">' + g.denom1 + '</div></div>';
-    if (g.ot2) ots += '<div class="ot-item"><div class="ot-num-big">' + g.ot2 + '</div><div class="ot-desc-big">' + g.denom2 + '</div></div>';
+    ots = '<div class="ots-section">';
+    if (g.ot1) ots += '<div class="ot-row"><div class="ot-num">' + g.ot1 + '</div><div class="ot-desc">' + g.denom1 + '</div></div>';
+    if (g.ot2) ots += '<div class="ot-row"><div class="ot-num">' + g.ot2 + '</div><div class="ot-desc">' + g.denom2 + '</div></div>';
     ots += '</div>';
   }
 
   let info = '';
   if (g.furgoneta || g.telefono) {
     info = '<div class="info-destacada">';
-    if (g.furgoneta) info += '<div class="info-destacada-row"><span class="info-destacada-label">&#128663; Furgoneta:</span><span class="info-destacada-val">' + g.furgoneta + '</span></div>';
-    if (g.telefono) info += '<div class="info-destacada-row"><span class="info-destacada-label">&#128222; Teléfono:</span><span class="info-destacada-val">' + g.telefono + '</span></div>';
+    if (g.furgoneta) info += '<div class="info-item"><span class="info-label">&#128663; Furgoneta:</span><span class="info-val">' + g.furgoneta + '</span></div>';
+    if (g.telefono) info += '<div class="info-item"><span class="info-label">&#128222; Teléfono:</span><span class="info-val">' + g.telefono + '</span></div>';
     info += '</div>';
   }
 
@@ -371,25 +360,28 @@ function tarjetaHTML(g, cssClass) {
   if (g.observaciones) obs = '<div class="obs-destacada">&#9888; ' + g.observaciones + '</div>';
 
   let personas = '';
-  if (g.p1) personas += personaMini(g.p1, g.dne1, g.cat1);
-  if (g.p2) personas += personaMini(g.p2, g.dne2, g.cat2);
-  if (esTrio) personas += personaMini(g.p3, g.dne3, g.cat3);
+  if (g.p1) personas += personaHTML(g.p1, g.dne1, g.cat1);
+  if (g.p2) personas += personaHTML(g.p2, g.dne2, g.cat2);
+  if (esTrio) personas += personaHTML(g.p3, g.dne3, g.cat3);
 
-  return '<div class="grupo-card">' +
-    '<div class="card-main">' + header + ots + info + obs + '</div>' +
+  return '<div class="grupo-card">' + header +
+    '<div class="card-main">' + ots + info + obs + '</div>' +
     '<div class="card-personas">' + personas + '</div>' +
     '</div>';
 }
 
-function personaMini(nombre, dne, cat) {
+function personaHTML(nombre, dne, cat) {
   const esAux = cat.toUpperCase().includes('AUXILIAR');
   const claseAv = esAux ? 'av-aux' : (cat.toUpperCase().includes('TRIO') ? 'av-trio' : 'av-ofi');
-  return '<div class="persona-mini">' +
-    '<div class="avatar-mini ' + claseAv + '">' + nombre.charAt(0) + '</div>' +
-    '<div class="pinfo-mini">' +
+  return '<div class="persona-row">' +
+    '<div class="avatar ' + claseAv + '">' + nombre.charAt(0) + '</div>' +
+    '<div class="pinfo">' +
       '<div class="nombre">' + nombre + '</div>' +
-      (dne ? '<div class="dne">DNE: ' + dne + '</div>' : '') +
-      '<div class="cargo">' + (cat||'') + '</div>' +
+      '<div class="detalles">' +
+        (dne ? '<span class="dne">DNE ' + dne + '</span>' : '') +
+        (dne && cat ? '<span class="sep">·</span>' : '') +
+        (cat ? '<span class="cargo">' + cat + '</span>' : '') +
+      '</div>' +
     '</div></div>';
 }
 
